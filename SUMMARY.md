@@ -4,5 +4,3 @@
 
 ## Linux machines
 
-## Windows machines
-
