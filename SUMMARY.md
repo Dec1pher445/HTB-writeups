@@ -4,5 +4,3 @@
 
 ## Linux machines
 
-* [Untitled](linux-machines/untitled.md)
-
