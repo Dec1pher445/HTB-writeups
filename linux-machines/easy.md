@@ -1,2 +1,2 @@
-# easy
+# Easy
 

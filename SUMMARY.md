@@ -4,7 +4,7 @@
 
 ## Linux machines
 
-* [easy](linux-machines/easy.md)
+* [Easy](linux-machines/easy.md)
 
 ## Windows machines
 
