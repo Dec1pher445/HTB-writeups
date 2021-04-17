@@ -15,5 +15,3 @@
 * [Medium](linux-boxes/medium.md)
 * [Hard](linux-boxes/hard.md)
 
-## Challenges
-
