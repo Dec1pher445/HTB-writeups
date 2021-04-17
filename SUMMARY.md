@@ -2,7 +2,7 @@
 
 * [Initial page](README.md)
 
-## Windows
+## Windows <a id="windows-box"></a>
 
 ---
 
