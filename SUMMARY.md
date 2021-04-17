@@ -4,6 +4,6 @@
 
 ## Windows-boxes
 
-* [Easy](windows-boxes/untitled/README.md)
-  * [test-easybox](windows-boxes/untitled/test-easybox.md)
+* [Easy](windows-boxes/easy/README.md)
+  * [test-easybox](windows-boxes/easy/test-easybox.md)
 
