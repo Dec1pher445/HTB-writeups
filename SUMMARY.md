@@ -6,5 +6,3 @@
 
 ## Linux boxes
 
-* [Untitled](linux-boxes/untitled.md)
-
