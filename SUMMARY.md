@@ -2,7 +2,3 @@
 
 * [Initial page](README.md)
 
-## Windows machines
-
-## Linux machines
-
