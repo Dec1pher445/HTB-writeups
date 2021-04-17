@@ -4,5 +4,5 @@
 
 ## Windows-boxes
 
-* [Untitled](windows-boxes/untitled.md)
+* [Easy](windows-boxes/untitled.md)
 
