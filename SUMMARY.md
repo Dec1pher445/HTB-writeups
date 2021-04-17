@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [My htb writeups during the journey to OSCP](README.md)
 
 ## Windows-boxes
 
