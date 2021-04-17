@@ -2,5 +2,3 @@
 
 * [Initial page](README.md)
 
-## Linux machines
-
