@@ -6,7 +6,7 @@ description: >-
 # HTB - Omni
 * OS: Windows IoT core
 * IP: 10.10.10.204
-![[omni.jpg]]
+![](../../.gitbook/assets/omni.jpg)
 
 ## Overview
 Omni is an easy windows machine that runs windows IoT core which is vulnerable to SirepRat which can execute arbitrary commands remotely. Since we can execute commands on the machine we can get a stable reverse shell. We can't read any flag on the machine because they are encrypted as a PSCredential hash. Enumerating the machine we find a hidden file `r.bat` which has credentials for the web portal of the machine. After we login to `Microsoft device portal` we can execute code from a remote terminal. From here we can get reverse shell for the user and the administrator accounts and we can decrypt the hashes and get the flags.
