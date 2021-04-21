@@ -60,7 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 129.29 seconds
 
 ### Fuzzing the device portal \(HTTP 8080\)
 
-!\[\[omni-device-portal.png\]\]
+![](omni-device-portal.png)
 
 Going through [Microsoft's documentation](https://docs.microsoft.com/en-us/windows/iot-core/manage-your-device/deviceportal) about IoT Dashboard I could find default credentials but the login credentials have been changed by the admin of the IoT dashboard. !\[\[omni-device-portal-creds.png\]\]
 
