@@ -55,7 +55,9 @@ The website is a gym management app and going though the pages we can see in the
 
 That version of the app has a know vulnerability that gives RCE to the attacker and we can find the exploit python script in ExploitDB [https://www.exploit-db.com/exploits/48506](https://www.exploit-db.com/exploits/48506).
 
-## Exploiting Gym management to get RCE
+# Escalating to System User
+
+### Exploiting Gym management to get RCE
 
 By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. 
 
@@ -67,7 +69,9 @@ Since `nc.exe` gets uploaded we can call it from the webshell we got from the py
 
 * At this point we can get user.txt under `C:\Users\Shaun\Desktop\user.txt`
 
-## Privilege escalation
+# Escalating to System administration
+
+### Privilege escalation
 
 After some manual enumeration on the use we can see an app that stick out `CloudMe.exe`. After searching for that app we can find that the version of that app is vulnerable to buffer overflow and we can find a python script in exploitdb that exploits the vulnerability.
 
