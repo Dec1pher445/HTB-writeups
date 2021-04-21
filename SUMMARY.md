@@ -4,8 +4,7 @@
 
 ## Windows-boxes
 
-* [Easy](windows-boxes/easy/README.md)
-  * [test-easybox](windows-boxes/easy/test-easybox.md)
+* [Easy](windows-boxes/easy.md)
 * [Medium](windows-boxes/medium.md)
 * [Hard](windows-boxes/hard.md)
 
