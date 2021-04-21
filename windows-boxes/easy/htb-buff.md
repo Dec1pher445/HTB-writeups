@@ -13,7 +13,7 @@ description: >-
 
 ## Overview
 
-Buff is an easy windows machine that runs a gym managment web interface tha't outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found oython exploit we get administration rights on the box.
+Buff is an easy windows machine that runs a gym management web interface tha't outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found python exploit we get administration rights on the box.
 
 ## Useful Tools
 
@@ -23,7 +23,7 @@ Buff is an easy windows machine that runs a gym managment web interface tha't ou
 
 ### Nmap
 
-As always the first thing is enumerating the box with nmap. The most efficient flags that I found that work relatively fast and at the same time don't skip important information are `-Pn` to skip the ping test, `-sS` foTCP SYN scan, `-sC` for teting default scripts, `-sV` for version enumeration of the host, `-T4` to be fast and `-p-` to do an all ports scan. Also to not waste time I like to use the `--max-retries 0` to stop nmap from testing the same port multiple times.
+As always the first thing is enumerating the box with nmap. The most efficient flags that I found that work relatively fast and at the same time don't skip important information are `-Pn` to skip the ping test, `-sS` for TCP SYN scan, `-sC` for testing default scripts, `-sV` for version enumeration of the host, `-T4` to be fast and `-p-` to do an all ports scan. Also to not waste time I like to use the `--max-retries 0` to stop nmap from testing the same port multiple times.
 
 ```bash
 dec1pher@kali:~$ sudo nmap -Pn -sS -sC -sV -T4 -p- 10.10.10.198 --max-retries 0
