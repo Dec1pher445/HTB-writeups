@@ -60,7 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 129.29 seconds
 
 ### Fuzzing the device portal \(HTTP 8080\)
 
-![](../../.gitbook/assets/omni-device-portal.png)
+![Device Portal login](../../.gitbook/assets/omni-device-portal.png)
 
 Going through [Microsoft's documentation](https://docs.microsoft.com/en-us/windows/iot-core/manage-your-device/deviceportal) about IoT Dashboard I could find default credentials but the login credentials have been changed by the admin of the IoT dashboard. !\[\[omni-device-portal-creds.png\]\]
 
@@ -70,17 +70,17 @@ Since we have a way to run arbitrary commands on the machine with SirepRat we ca
 
 ### User Enumeration
 
-![](../../.gitbook/assets/omni-user-enum.png)
+![Using SirepRat to enumerate logged in user](../../.gitbook/assets/omni-user-enum.png)
 
 ### Checking powershell access
 
-![](../../.gitbook/assets/omni-powershell-accees.png)
+![Using SirepRat to confirm powershell access](../../.gitbook/assets/omni-powershell-accees.png)
 
 ### Uploading nc64.exe
 
 At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali.
 
-![](../../.gitbook/assets/omni-architecture.png)
+![Using SirepRat to enumerate OS architecture](../../.gitbook/assets/omni-architecture.png)
 
 > nc64.exe found here: [https://eternallybored.org/misc/netcat/](https://eternallybored.org/misc/netcat/)
 
@@ -119,7 +119,7 @@ After executing the above commands in powershell we can read the flag of the use
 
 * The same process can be implemented  to get access as administrator on the box and decrypt the `root.txt` 
 
-> **More about PSCredentials**   
-> [How To Save and Read Sensitive Data with   
+> **More about PSCredentials**  
+> [How To Save and Read Sensitive Data with  
 > PowerShell](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx) [Powershell Password Encryption & Decryption](https://www.travisgan.com/2015/06/powershell-password-encryption.html)
 
