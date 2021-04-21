@@ -4,7 +4,8 @@
 
 ## Windows-boxes
 
-* [Easy](windows-boxes/easy.md)
+* [Easy](windows-boxes/easy/README.md)
+  * [HTB - Buff](windows-boxes/easy/htb-buff.md)
 * [Medium](windows-boxes/medium.md)
 * [Hard](windows-boxes/hard.md)
 
