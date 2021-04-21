@@ -59,7 +59,7 @@ That version of the app has a know vulnerability that gives RCE to the attacker 
 
 ### Exploiting Gym management to get RCE
 
-By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. 
+By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell.
 
 ![Uploading nc.exe with powershell IWR](../../.gitbook/assets/buff-nc.png)
 
@@ -69,7 +69,7 @@ Since `nc.exe` gets uploaded we can call it from the webshell we got from the py
 
 * At this point we can get user.txt under `C:\Users\Shaun\Desktop\user.txt`
 
-## Escalating to System administration
+## Escalating to System administrator
 
 ### Privilege escalation
 
