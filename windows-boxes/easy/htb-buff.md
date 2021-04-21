@@ -75,7 +75,7 @@ After some manual enumeration on the use we can see an app that stick out `Cloud
 
 > buffer overflow script found here =&gt; [https://www.exploit-db.com/exploits/48389](https://www.exploit-db.com/exploits/48389)
 
-### Creating the payload and setting up Chisel to use the script
+### Creating the payload and setting up Chisel
 
 Since python is not installed in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom and then use that created payload in the python script that we found.
 
