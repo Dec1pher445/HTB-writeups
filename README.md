@@ -2,9 +2,11 @@
 description: This is my collection of notes gathered from doing HackTheBox boxes.
 ---
 
-# My way to OSCP
+# My htb writeups during the journey to OSCP
 
-# About me
+## My way to OSCP
 
-# Contact
+## About me
+
+## Contact
 

@@ -4,7 +4,7 @@ description: >-
   https://hackthebox.eu
 ---
 
-# HTB-Buff
+# HTB - Buff
 
 * OS: Windows
 * IP: 10.10.10.198
