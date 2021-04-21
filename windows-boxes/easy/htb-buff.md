@@ -13,7 +13,7 @@ description: >-
 
 ## Overview
 
-Buff is an easy windows machine that runs a gym management web interface tha't outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found python exploit we get administration rights on the box.
+Buff is an easy windows machine that runs a gym management web interface that's outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found python exploit we get administration rights on the box.
 
 ## Useful Tools
 
@@ -63,7 +63,7 @@ By running the exploit providing the box ip we get RCE on the box. The shell tha
 
 ![](../../.gitbook/assets/buff-nc.png)
 
-2. Executing nc and getting a responsive reverse shell
+2. Executing `nc` and getting a responsive reverse shell
 
 ![](../../.gitbook/assets/buff-rce.png)
 
