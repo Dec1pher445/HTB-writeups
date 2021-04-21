@@ -78,13 +78,13 @@ Since we have a way to run arbitrary commands on the machine with SirepRat we ca
 
 ### Uploading nc64.exe
 
-At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali. 
+At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali.
 
 ![](../../.gitbook/assets/omni-architecture.png)
 
 > nc64.exe found here: [https://eternallybored.org/misc/netcat/](https://eternallybored.org/misc/netcat/)
 
-Uploading that version of netcat on the machine and executing it we get a reverse shell 
+Uploading that version of netcat on the machine and executing it we get a reverse shell
 
 ![](../../.gitbook/assets/omni-rce.png)
 
@@ -92,11 +92,11 @@ Since we are the omni user in the shell that we have we are basically admin on t
 
 ## Post exploitation
 
-We can list all the users on the box in powershell using `Get-LocalUser` in powershell. 
+We can list all the users on the box in powershell using `Get-LocalUser` in powershell.
 
 ![](../../.gitbook/assets/omni-local-users.png)
 
-After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users. 
+After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users.
 
 ![](../../.gitbook/assets/omni-creds.png)
 
@@ -119,7 +119,7 @@ After executing the above commands in powershell we can read the flag of the use
 
 * The same process can be implemented  to get access as administrator on the box and decrypt the `root.txt` 
 
-> **More about PSCredentials** 
-> [How To Save and Read Sensitive Data with PowerShell](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx)
-> [Powershell Password Encryption & Decryption](https://www.travisgan.com/2015/06/powershell-password-encryption.html)
+> **More about PSCredentials**   
+> [How To Save and Read Sensitive Data with   
+> PowerShell](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx) [Powershell Password Encryption & Decryption](https://www.travisgan.com/2015/06/powershell-password-encryption.html)
 
