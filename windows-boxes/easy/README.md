@@ -1,3 +1,7 @@
+---
+description: Write ups for easy difficulty machines from HackTheBox
+---
+
 # Easy
 
 That's the easy section boxes
