@@ -6,6 +6,7 @@
 
 * [Easy](windows-boxes/easy/README.md)
   * [HTB-Buff](windows-boxes/easy/htb-buff.md)
+  * [HTB - Omni](windows-boxes/easy/htb-omni.md)
 * [Medium](windows-boxes/medium.md)
 * [Hard](windows-boxes/hard.md)
 
