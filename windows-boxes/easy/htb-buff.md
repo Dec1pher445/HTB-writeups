@@ -8,7 +8,7 @@ description: >-
 * OS: Windows
 * IP: 10.10.10.198
 	
- ![](../../att/buff.png)
+ ![](../../att/buff.PNG)
 	
 ## Overview
 Buff is an easy windows machine that runs a gym managment web interface tha't outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found oython exploit we get administration rights on the box.
