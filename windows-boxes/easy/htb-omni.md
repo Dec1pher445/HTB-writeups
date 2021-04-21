@@ -119,5 +119,7 @@ After executing the above commands in powershell we can read the flag of the use
 
 * The same process can be implemented  to get access as administrator on the box and decrypt the `root.txt` 
 
-> **More about PSCredentials** [How To Save and Read Sensitive Data with PowerShell](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx) [Powershell Password Encryption & Decryption](https://www.travisgan.com/2015/06/powershell-password-encryption.html)
+> **More about PSCredentials** 
+> [How To Save and Read Sensitive Data with PowerShell](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx)
+> [Powershell Password Encryption & Decryption](https://www.travisgan.com/2015/06/powershell-password-encryption.html)
 
