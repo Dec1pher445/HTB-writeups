@@ -106,7 +106,7 @@ Using these credentials to login to the device portal on port `8080` we can acce
 
 After logging in as `app` on the IoT dashboard we can see that there is a section called `run command`. Testing the functionality of that section we can see that we can run powershell commands on the machine as the logged in user. So again we upload `nc64.exe` on the box with `powershell IWR` execute it in order to get a reverse shell as the user `app`. !\[\[omni-app.png\]\]
 
-#### Decrypting PSCredentials
+### Decrypting PSCredentials
 
 Now that we are logged in as `app` we can decrypt the user flag. Searching for ways to decrypt PSCredentials I found the way to do so by using these commands:
 
