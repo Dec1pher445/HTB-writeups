@@ -54,7 +54,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 129.29 seconds
 ```
 
-* At that time it was the first time that I saw ports above 29000 so I looked up those ports and how windows uses them. Searching information about  these ports I stumbled across a presentation about IoT security and how SirepRat can be used to exploit such devices running windows IoT core. It also explained that the way users administrate these devices is through the IoT dashboard which is  a web interface running on port `29829` using the  `Sirep-Server-Protocol2`. The presentation also provided the link for the github repo were SirepRat lives.
+* At that time it was the first time that I saw ports above 29000 so I looked up those ports and how windows uses them. Searching information about these ports I stumbled across a presentation about IoT security and how SirepRat can be used to exploit such devices running windows IoT core. It also explained that the way users administrate these devices is through the IoT dashboard which is a web interface running on port `29829` using the `Sirep-Server-Protocol2`. The presentation also provided the link for the github repo were SirepRat lives.
 
   > The above information gathered from [here](https://www.woprsummit.org/slides-archive/SirepRAT_RCEasSYSTEMonWindowsIoTCore-WOPRSummit.pdf)
 
@@ -79,22 +79,25 @@ Since we have a way to run arbitrary commands on the machine with SirepRat we ca
 ### Uploading nc64.exe
 
 At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali. 
+
 ![](../../.gitbook/assets/omni-architecture.png)
 
 > nc64.exe found here: [https://eternallybored.org/misc/netcat/](https://eternallybored.org/misc/netcat/)
 
 Uploading that version of netcat on the machine and executing it we get a reverse shell 
-![](../../.gitbook/assets/omni-rce.png)
 
+![](../../.gitbook/assets/omni-rce.png)
 
 Since we are the omni user in the shell that we have we are basically admin on the box but we can't see neither user's nor administrator's flags because they are encrypted as PSCredentials. In order to decrypt such hashes we have to be logged in the system as the user that created the hash.
 
 ## Post exploitation
 
 We can list all the users on the box in powershell using `Get-LocalUser` in powershell. 
+
 ![](../../.gitbook/assets/omni-local-users.png)
 
-After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users.
+After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users. 
+
 ![](../../.gitbook/assets/omni-creds.png)
 
 Using these credentials to login to the device portal on port `8080` we can access the IoT dashboard of both the users.
