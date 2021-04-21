@@ -60,7 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 129.29 seconds
 
 ### Fuzzing the device portal \(HTTP 8080\)
 
-![](omni-device-portal.png)
+![](../../.gitbook/assets/omni-device-portal.png)
 
 Going through [Microsoft's documentation](https://docs.microsoft.com/en-us/windows/iot-core/manage-your-device/deviceportal) about IoT Dashboard I could find default credentials but the login credentials have been changed by the admin of the IoT dashboard. !\[\[omni-device-portal-creds.png\]\]
 
@@ -70,27 +70,32 @@ Since we have a way to run arbitrary commands on the machine with SirepRat we ca
 
 ### User Enumeration
 
-!\[\[omni-user-enum.png\]\]
+![](../../.gitbook/assets/omni-user-enum.png)
 
 ### Checking powershell access
 
-!\[\[omni-powershell-accees.png\]\]
+![](../../.gitbook/assets/omni-powershell-accees.png)
 
 ### Uploading nc64.exe
 
-At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali. !\[\[omni-architecture.png\]\]
+At first when I tried to upload and execute the default nc.exe that comes with kali I couldn't get a reverse shell. And that's because the OS that runs on the machine can't execute the default nc.exe that is in Kali. 
+![](../../.gitbook/assets/omni-architecture.png)
 
 > nc64.exe found here: [https://eternallybored.org/misc/netcat/](https://eternallybored.org/misc/netcat/)
 
-Uploading that version of netcat on the machine and executing it we get a reverse shell !\[\[omni-rce.png\]\]
+Uploading that version of netcat on the machine and executing it we get a reverse shell 
+![](../../.gitbook/assets/omni-rce.png)
+
 
 Since we are the omni user in the shell that we have we are basically admin on the box but we can't see neither user's nor administrator's flags because they are encrypted as PSCredentials. In order to decrypt such hashes we have to be logged in the system as the user that created the hash.
 
 ## Post exploitation
 
-We can list all the users on the box in powershell using `Get-LocalUser` in powershell. !\[\[omni-local-users.png\]\]
+We can list all the users on the box in powershell using `Get-LocalUser` in powershell. 
+![](../../.gitbook/assets/omni-local-users.png)
 
-After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users. !\[\[omni-creds.png\]\]
+After more enumeration I found an peculiar `r.dat` file under `C:\Program Files\WindowsPowerShell\Modules\PackageManager` which had credentials for the `app` and `administrator` users.
+![](../../.gitbook/assets/omni-creds.png)
 
 Using these credentials to login to the device portal on port `8080` we can access the IoT dashboard of both the users.
 
