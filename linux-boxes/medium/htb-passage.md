@@ -6,8 +6,6 @@ description: >-
 
 # HTB - Passage
 
-## HTB - Passage
-
 * OS: Linux
 * IP: 10.10.10.206
 
