@@ -43,15 +43,15 @@ PORT   STATE SERVICE REASON         VERSION
 
 After the initial enumeration we can see that on the machine run's a web server and port 22 \(ssh\) is open. Visiting the website we don't get much but we see a post about `fail2ban` so we can't just user `gobuster` for directory searching. Low hanging fruits such as `robots.txt, admin.php/html, cgi-bin` gave us nothing.
 
- ![](../../.gitbook/assets/passage-site.PNG)
+![](../../.gitbook/assets/passage-site.PNG)
 
 Taking a look at the source of the webpage we can see a odd directory `CuteNews`.
 
-![](../../.gitbook/assets/passage-site-source.png)
+![index.html source](../../.gitbook/assets/passage-site-source.png)
 
 Visiting `http://10.10.10.206/CuteNews` we get a login screen for CuteNews which something like a CMS for news posting, and the version `CuteNews 2.1.2`
 
-![](../../.gitbook/assets/passage-CuteNews.png)
+![CuteNews login page](../../.gitbook/assets/passage-CuteNews.png)
 
 ## Getting RCE
 
@@ -69,9 +69,9 @@ We can call the shell from the url parameter ot verify code execution on the box
 
 So now we can upload a `php reverse shell` open a `netcat` listener and get a reverse shell.
 
-![](../../.gitbook/assets/passage-rce.png)
+![Modifying php reverse shell from pentestmonkey ](../../.gitbook/assets/passage-rce.png)
 
-![](../../.gitbook/assets/passage-nc.png)
+![Opening reverse shell](../../.gitbook/assets/passage-nc.png)
 
 ## Privilege escalation
 
@@ -91,7 +91,7 @@ paul:atlanta1
 
 Taking a look in pauls home directory we can see a `ssh private key` and in the `authorized_keys` we have `nadavs` public key so `nadav` is authenticated in the server and we can ssh from paul to nadav `ssh nadav@10.10.10.206`. Using the `private ssh key` that we found also works for nadav.
 
-![](../../.gitbook/assets/passage-nadav.png)
+![ssh as nadav from paul](../../.gitbook/assets/passage-nadav.png)
 
 ### Escalating from user nadav  to root
 
