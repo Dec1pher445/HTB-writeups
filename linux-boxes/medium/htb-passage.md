@@ -7,7 +7,7 @@ description: >-
 * OS: Linux
 * IP: 10.10.10.198
 
-![](../../.gitbook/assets/passage.jpg)
+ ![](../../.gitbook/assets/passage.jpg)
 
 ## Overview
 Passage is a medium difficulty Linux box. The initial foothold is a misconfiguration in the way that CuteNews handles profile avatars. By changing the magic byte of a file we can upload any file we want since CuteNews only verify the file by the magic byte and not by file extensions as well. That way we have access as a low privileged user. Going through the CuteNew's configuration files we see a directory `cdata/users` which contains some `php` scripts with `base64` encoded strings. Decoding those we have potential users and their hashed passwords, among them is the user `paul` whose password is crackable, also paul is a user account in the machine. In paul's home directory we have a `ssh private key` which works for `nadav` (second user on the box) as well, for some reason the share the same ssh key and finally by exploiting a vulnerability in USBCreator we can elevate our privileges to root. 
