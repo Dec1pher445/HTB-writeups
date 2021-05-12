@@ -9,7 +9,7 @@ description: >-
 ## HTB - Passage
 
 * OS: Linux
-* IP: 10.10.10.198
+* IP: 10.10.10.206
 
 ![](../../.gitbook/assets/passage.jpg)
 
