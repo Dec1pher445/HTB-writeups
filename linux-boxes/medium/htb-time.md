@@ -9,7 +9,7 @@ description: >-
 * OS: Linux
 * IP: 10.10.10.214
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time.jpg)
+![](../../.gitbook/assets/time.jpg)
 
 ### Overview
 
@@ -43,7 +43,7 @@ Nmap done: 1 IP address (1 host up) scanned in 131.70 seconds Recon is Complete
 
 Vising the website we can see a json validator which we will fuzz with json an random inputs to see if we get any special behavior.
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-site.png)
+![](../../.gitbook/assets/time-site.png)
 
 Using random input on the validator we get the below error that got me searching on `jackson` vulnerabilities. `Validation failed: Unhandled Java exception: com.fasterxml.jackson.databind.exc.MismatchedInputException: Unexpected token (START_OBJECT), expected START_ARRAY: need JSON Array to contain As.WRAPPER_ARRAY type information for class java.lang.Object`
 
@@ -70,7 +70,7 @@ After modifying the `inject.sql` file we serve it with a simple http python serv
 
 Upon validation of the above input we get a reverse shell on our netcat listener.
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/time-rce.png)
+![](../../.gitbook/assets/time-rce.png)
 
 The shell that we got is as system user we can get the `user.txt` in the pericles home directory.
 
@@ -80,13 +80,13 @@ The shell that we got is as system user we can get the `user.txt` in the pericle
 
 Uploading and running linpeas on the machine we see an interesting file being executed.
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-backup.png)
+![](../../.gitbook/assets/time-backup.png)
 
 Going through the `backup.sh` we can see that it create a zip and moves it to root so we have right access to root folders. To further verify that claim I added a simple command to create a directory, I uploaded `pspy` and monitored what processes run. After some time I saw a cron job that runs the script and created my test directory as root.
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-dir.png)
+![](../../.gitbook/assets/time-dir.png)
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-ps.png)
+![](../../.gitbook/assets/time-ps.png)
 
 ### First way to root access
 
@@ -98,9 +98,9 @@ echo "echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC14eMqG/FOTDWiOW/+SFlwKP0Ac2jW
 
 And then ssh in with your private key
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-ssh.png)
+![](../../.gitbook/assets/time-ssh.png)
 
-![](https://github.com/Dec1pher445/HTB-writeups/tree/6ea6447ad1e3f305625621b3c9688f8418d88aeb/.gitbook/assets/time-id.png)
+![](../../.gitbook/assets/time-id.png)
 
 ### First way to root access
 
