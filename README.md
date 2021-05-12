@@ -9,5 +9,5 @@ description: This is my collection of notes gathered from doing HackTheBox boxes
 The original goal was to become a network engineer but during college I was introduced to penetration testing, a field that I am passionate about since then. My main interests are web application penetration testing, file system forensics and privilege escalation mostly on Linux environments. Currently I have completed 18 machines and working on publishing all my writeups as soon as possible.   
  
 
-![Hack The Box](https://www.hackthebox.eu/badge/image/53856)
+![Hack The Box profile](https://www.hackthebox.eu/badge/image/53856)
 
