@@ -35,7 +35,7 @@ PORT   STATE SERVICE REASON         VERSION
 ## Site discovery
 After the initial enumeration we can see that on the machine run's a web server and port 22 (ssh) is open. Visiting the website we don't get much but we see a post about `fail2ban` so we can't just user `gobuster` for directory searching. Low hanging fruits such as `robots.txt, admin.php/html, cgi-bin` gave us nothing.
 
-![](../../.gitbook/assets/passage-site.png)
+ ![](../../.gitbook/assets/passage-site.png)
 
 Taking a look at the source of the webpage we can see a odd directory `CuteNews`.
 
