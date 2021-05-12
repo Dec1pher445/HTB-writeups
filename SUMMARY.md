@@ -14,6 +14,7 @@
 
 * [Easy](linux-boxes/easy.md)
 * [Medium](linux-boxes/medium/README.md)
+  * [HTB - Time](linux-boxes/medium/htb-time.md)
   * [HTB - Passage](linux-boxes/medium/htb-passage.md)
 * [Hard](linux-boxes/hard.md)
 
