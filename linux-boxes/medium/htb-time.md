@@ -43,7 +43,7 @@ Nmap done: 1 IP address (1 host up) scanned in 131.70 seconds Recon is Complete
 
 Vising the website we can see a json validator which we will fuzz with json an random inputs to see if we get any special behavior.
 
-![](../../.gitbook/assets/time-site.png)
+![index.html](../../.gitbook/assets/time-site.png)
 
 Using random input on the validator we get the below error that got me searching on `jackson` vulnerabilities. `Validation failed: Unhandled Java exception: com.fasterxml.jackson.databind.exc.MismatchedInputException: Unexpected token (START_OBJECT), expected START_ARRAY: need JSON Array to contain As.WRAPPER_ARRAY type information for class java.lang.Object`
 
@@ -70,7 +70,7 @@ After modifying the `inject.sql` file we serve it with a simple http python serv
 
 Upon validation of the above input we get a reverse shell on our netcat listener.
 
-![](../../.gitbook/assets/time-rce.png)
+![Getting RCE](../../.gitbook/assets/time-rce.png)
 
 The shell that we got is as system user we can get the `user.txt` in the pericles home directory.
 
@@ -80,13 +80,13 @@ The shell that we got is as system user we can get the `user.txt` in the pericle
 
 Uploading and running linpeas on the machine we see an interesting file being executed.
 
-![](../../.gitbook/assets/time-backup.png)
+![Linpeas.sh output found the backup.sh](../../.gitbook/assets/time-backup.png)
 
 Going through the `backup.sh` we can see that it create a zip and moves it to root so we have right access to root folders. To further verify that claim I added a simple command to create a directory, I uploaded `pspy` and monitored what processes run. After some time I saw a cron job that runs the script and created my test directory as root.
 
-![](../../.gitbook/assets/time-dir.png)
+![Writing my commands in the script](../../.gitbook/assets/time-dir.png)
 
-![](../../.gitbook/assets/time-ps.png)
+![Cron job that runs the backup.sh and run my command](../../.gitbook/assets/time-ps.png)
 
 ### First way to root access
 
@@ -98,7 +98,7 @@ echo "echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC14eMqG/FOTDWiOW/+SFlwKP0Ac2jW
 
 And then ssh in with your private key
 
-![](../../.gitbook/assets/time-ssh.png)
+![ssh in the machine as root](../../.gitbook/assets/time-ssh.png)
 
 ![](../../.gitbook/assets/time-id.png)
 
