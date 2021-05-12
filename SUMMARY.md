@@ -13,7 +13,6 @@
 ## Linux boxes
 
 * [Easy](linux-boxes/easy.md)
-* [Medium](linux-boxes/medium/README.md)
-  * [HTB - Passage](linux-boxes/medium/htb-passage.md)
+* [Medium](linux-boxes/medium.md)
 * [Hard](linux-boxes/hard.md)
 
