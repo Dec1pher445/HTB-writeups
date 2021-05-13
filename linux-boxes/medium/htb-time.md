@@ -102,7 +102,7 @@ And then ssh in with your private key
 
 ![](../../.gitbook/assets/time-id.png)
 
-### First way to root access
+### Second way to root access
 
 Since the script is executed by root we can change the shell permissions. Setting the `/bin/bash` binary as SUID we can just elevate to root. The commands to do that are these.
 
